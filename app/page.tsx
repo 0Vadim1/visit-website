@@ -1,65 +1,131 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React from 'react';
+import Image from 'next/image';
+import { Navbar } from './components/navbar';
+import { AuthModal } from './components/auth-modal';
+
+const menuItems = [
+  {
+    title: 'Філадельфія',
+    description: 'Лосось, сир філадельфія, огірок, рис, норі',
+    price: '299 ₴',
+    image: '/menu/Philadelphia.png',
+  },
+  {
+    title: 'Каліфорнія',
+    description: 'Креветка, авокадо, ікра тобіко, рис, норі',
+    price: '329 ₴',
+    image: '/menu/California.png',
+  },
+  {
+    title: 'Спайсі Тунець',
+    description: 'Тунець, соус спайсі, огірок, рис, норі',
+    price: '319 ₴',
+    image: '/menu/SpicyTuna.png',
+  },
+];
+
+export default function HomePage() {
+  const [authOpen, setAuthOpen] = React.useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-orange-50 text-gray-900">
+      <Navbar onOpenAuth={() => setAuthOpen(true)} />
+
+      <section id="home" className="mx-auto max-w-6xl px-4 py-16">
+        <div className="rounded-3xl bg-white p-8 shadow-sm md:p-12">
+          <p className="mb-4 inline-flex rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
+            Сайт-візитка проєкту
           </p>
+
+          <h1 className="text-4xl font-extrabold leading-tight md:text-6xl">
+            LoveSushi — суші та роли з любов&apos;ю
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-base text-gray-600">
+            Ми готуємо свіжі роли, сети та авторські позиції. Цей сайт-візитка створено для
+            презентації нашого проєкту та демонстрації адаптивного інтерфейсу з меню й формою
+            авторизації.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#menu"
+              className="rounded-2xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
+            >
+              Переглянути меню
+            </a>
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
+            >
+              Авторизуватися
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="about" className="mx-auto max-w-6xl px-4 py-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-bold">Про нас</h2>
+            <p className="mt-4 text-gray-600">
+              LoveSushi — це концепт сучасного суші-бренду з акцентом на зручне онлайн-замовлення,
+              якісні інгредієнти та стильний візуальний дизайн.
+            </p>
+          </div>
+
+          <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-bold">Чому саме ми</h2>
+            <ul className="mt-4 space-y-2 text-gray-600">
+              <li>• Адаптивний сучасний інтерфейс</li>
+              <li>• Просте меню навігації</li>
+              <li>• Зручна форма входу з валідацією</li>
+              <li>• Приємний дизайн у стилі бренду</li>
+            </ul>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="menu" className="mx-auto max-w-6xl px-4 py-8">
+        <div className="rounded-3xl bg-white p-8 shadow-sm">
+          <h2 className="text-3xl font-bold">Наше меню</h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {menuItems.map((item) => (
+              <article key={item.title} className="rounded-2xl border border-orange-100 p-5">
+                <div className="mb-4 overflow-hidden rounded-2xl bg-orange-100">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={500}
+                    height={300}
+                    className="h-40 w-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm text-gray-600">{item.description}</p>
+                <p className="mt-4 text-lg font-bold text-orange-600">{item.price}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts" className="mx-auto max-w-6xl px-4 py-8 pb-16">
+        <div className="rounded-3xl bg-gray-900 p-8 text-white shadow-sm">
+          <h2 className="text-3xl font-bold">Контакти</h2>
+          <div className="mt-5 grid gap-3 text-sm text-gray-200 md:grid-cols-2">
+            <p>📍 м. Миколаїв, вул. Центральна, 12</p>
+            <p>📞 +38 (098) 111-22-33</p>
+            <p>✉️ hello@lovesushi.ua</p>
+            <p>🕒 Щодня: 10:00–22:00</p>
+          </div>
+        </div>
+      </section>
+
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
+    </main>
   );
 }
