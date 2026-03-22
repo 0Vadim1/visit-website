@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 
 const basePath = process.env.NODE_ENV === 'production' ? '/visit-website' : '';
 
@@ -32,12 +31,10 @@ export function Navbar({
     <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
         <a href="#home" className="flex items-center gap-3">
-          <Image
+          <img
             src={`${basePath}/logo.png`}
             alt="LoveSushi logo"
-            width={44}
-            height={44}
-            className="rounded-md object-cover"
+            className="h-11 w-11 rounded-md object-cover"
           />
           <div>
             <p className="text-lg font-bold text-orange-600">LoveSushi</p>
@@ -79,11 +76,9 @@ export function Navbar({
                     onClick={() => onSuggestionClick(item.title)}
                     className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-orange-50"
                   >
-                    <Image
+                    <img
                       src={item.image}
                       alt={item.title}
-                      width={48}
-                      height={32}
                       className="h-8 w-12 rounded object-cover"
                     />
                     <div>
@@ -152,11 +147,9 @@ export function Navbar({
                   }}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-orange-50"
                 >
-                  <Image
+                  <img
                     src={item.image}
                     alt={item.title}
-                    width={48}
-                    height={32}
                     className="h-8 w-12 rounded object-cover"
                   />
                   <div>

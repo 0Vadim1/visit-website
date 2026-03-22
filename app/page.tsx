@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { Navbar } from './components/navbar';
 import { AuthModal } from './components/auth-modal';
 
@@ -142,11 +141,9 @@ export default function HomePage() {
                 className="rounded-2xl border border-orange-100 p-5"
               >
                 <div className="mb-4 overflow-hidden rounded-2xl bg-orange-100">
-                  <Image
+                  <img
                     src={item.image}
                     alt={item.title}
-                    width={500}
-                    height={300}
                     className="h-40 w-full object-cover"
                   />
                 </div>
