@@ -5,24 +5,26 @@ import Image from 'next/image';
 import { Navbar } from './components/navbar';
 import { AuthModal } from './components/auth-modal';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/visit-website' : '';
+
 const menuItems = [
   {
     title: 'Філадельфія',
     description: 'Лосось, сир філадельфія, огірок, рис, норі',
     price: '299 ₴',
-    image: '/menu/Philadelphia.png',
+    image: `${basePath}/menu/Philadelphia.png`,
   },
   {
     title: 'Каліфорнія',
     description: 'Креветка, авокадо, ікра тобіко, рис, норі',
     price: '329 ₴',
-    image: '/menu/California.png',
+    image: `${basePath}/menu/California.png`,
   },
   {
     title: 'Спайсі Тунець',
     description: 'Тунець, соус спайсі, огірок, рис, норі',
     price: '319 ₴',
-    image: '/menu/SpicyTuna.png',
+    image: `${basePath}/menu/SpicyTuna.png`,
   },
 ];
 
@@ -31,15 +33,15 @@ export default function HomePage() {
   const [search, setSearch] = React.useState('');
 
   const suggestions = menuItems.filter((item) => {
-  if (!search.trim()) return false;
+    if (!search.trim()) return false;
 
-  const firstChar = search[0];
-  const isFirstUpperCase = firstChar === firstChar.toUpperCase();
+    const firstChar = search[0];
+    const isFirstUpperCase = firstChar === firstChar.toUpperCase();
 
-  if (!isFirstUpperCase) return false;
+    if (!isFirstUpperCase) return false;
 
-  return item.title.includes(search);
-});
+    return item.title.includes(search);
+  });
 
   const handleSuggestionClick = (title: string) => {
     setSearch(title);
@@ -82,27 +84,27 @@ export default function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-  <a
-    href="#menu"
-    className="rounded-2xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
-  >
-    Переглянути меню
-  </a>
+            <a
+              href="#menu"
+              className="rounded-2xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
+            >
+              Переглянути меню
+            </a>
 
-  <button
-    onClick={() => setAuthOpen(true)}
-    className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
-  >
-    Авторизуватися
-  </button>
+            <button
+              onClick={() => setAuthOpen(true)}
+              className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
+            >
+              Авторизуватися
+            </button>
 
-  <button
-    type="button"
-    className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
-  >
-    Контакти
-  </button>
-</div>
+            <a
+              href="#contacts"
+              className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
+            >
+              Контакти
+            </a>
+          </div>
         </div>
       </section>
 
@@ -165,15 +167,14 @@ export default function HomePage() {
             <p>📍 м. Миколаїв, вул. Центральна, 12</p>
             <p>📞 +38 (098) 111-22-33</p>
             <p>
-  ✉️{' '}
-  <a
-    href="about:blank"
-    target="_blank"
-    className="text-white underline transition hover:text-orange-300"
-  >
-    hello@lovesushi.ua
-  </a>
-</p>
+              ✉️{' '}
+              <a
+                href="mailto:hello@lovesushi.ua"
+                className="text-white underline transition hover:text-orange-300"
+              >
+                hello@lovesushi.ua
+              </a>
+            </p>
             <p>🕒 Щодня: 10:00–22:00</p>
           </div>
         </div>
