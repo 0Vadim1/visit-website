@@ -83,7 +83,7 @@ export function AuthModal({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/45 px-4"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/45 px-4"
       onClick={onClose}
     >
       <div
