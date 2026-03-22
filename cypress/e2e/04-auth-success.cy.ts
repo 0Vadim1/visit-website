@@ -1,4 +1,4 @@
-describe('4. Успішна авторизація', () => {
+describe('4. Successful authorization', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
     cy.contains('button', 'Авторизуватися').click();
@@ -6,7 +6,7 @@ describe('4. Успішна авторизація', () => {
     cy.contains('Вхід в акаунт').should('be.visible');
   });
 
-  it('Успішно заповнює форму входу коректними даними', () => {
+  it('Should successfully submit the login form with valid credentials', () => {
     cy.get('input[name="email"]')
       .should('be.visible')
       .type('oleg.dev@example.com')

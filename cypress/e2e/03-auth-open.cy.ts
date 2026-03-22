@@ -1,9 +1,9 @@
-describe('3. Відкриття форми авторизації', () => {
+describe('3. Opening the login form', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
   });
 
-  it('Успішно відкриває модальне вікно входу після натискання кнопки "Авторизуватися"', () => {
+  it('Should open the login modal after clicking the Authorize button', () => {
     cy.contains('button', 'Авторизуватися').click();
 
     cy.get('form').should('be.visible');

@@ -1,9 +1,9 @@
-describe('10. Перевірка гіперпосилання електронної пошти', () => {
+describe('10. Email hyperlink behavior', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
   });
 
-  it('Після натискання на пошту URL сторінки не змінюється', () => {
+  it('Should keep the same page URL after clicking the email link', () => {
     cy.url().then((currentUrl) => {
       cy.get('a[href^="mailto:"]')
         .should('be.visible')

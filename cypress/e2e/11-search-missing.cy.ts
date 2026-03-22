@@ -1,9 +1,9 @@
-describe('11. Пошук неіснуючого товару', () => {
+describe('11. Search for a non-existing product', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
   });
 
-  it('Не відображає результатів для неіснуючого товару', () => {
+  it('Should not display results for a non-existing product', () => {
     cy.get('input[placeholder*="Пошук по меню"]')
       .clear()
       .type('НеіснуючийРол123{enter}');
