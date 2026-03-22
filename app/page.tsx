@@ -98,7 +98,6 @@ export default function HomePage() {
             </button>
 
             <a
-              href="#contacts"
               className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
             >
               Контакти
