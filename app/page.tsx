@@ -28,10 +28,42 @@ const menuItems = [
 
 export default function HomePage() {
   const [authOpen, setAuthOpen] = React.useState(false);
+  const [search, setSearch] = React.useState('');
+
+  const suggestions = menuItems.filter((item) => {
+  if (!search.trim()) return false;
+
+  const firstChar = search[0];
+  const isFirstUpperCase = firstChar === firstChar.toUpperCase();
+
+  if (!isFirstUpperCase) return false;
+
+  return item.title.includes(search);
+});
+
+  const handleSuggestionClick = (title: string) => {
+    setSearch(title);
+
+    setTimeout(() => {
+      const element = document.getElementById(`menu-item-${title}`);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    }, 100);
+  };
 
   return (
     <main className="min-h-screen bg-orange-50 text-gray-900">
-      <Navbar onOpenAuth={() => setAuthOpen(true)} />
+      <Navbar
+        onOpenAuth={() => setAuthOpen(true)}
+        searchValue={search}
+        onSearchChange={setSearch}
+        suggestions={suggestions}
+        onSuggestionClick={handleSuggestionClick}
+      />
 
       <section id="home" className="mx-auto max-w-6xl px-4 py-16">
         <div className="rounded-3xl bg-white p-8 shadow-sm md:p-12">
@@ -50,19 +82,27 @@ export default function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#menu"
-              className="rounded-2xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
-            >
-              Переглянути меню
-            </a>
-            <button
-              onClick={() => setAuthOpen(true)}
-              className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
-            >
-              Авторизуватися
-            </button>
-          </div>
+  <a
+    href="#menu"
+    className="rounded-2xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
+  >
+    Переглянути меню
+  </a>
+
+  <button
+    onClick={() => setAuthOpen(true)}
+    className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
+  >
+    Авторизуватися
+  </button>
+
+  <button
+    type="button"
+    className="rounded-2xl border border-orange-400 px-6 py-3 font-semibold text-orange-500 transition hover:bg-orange-50"
+  >
+    Контакти
+  </button>
+</div>
         </div>
       </section>
 
@@ -94,7 +134,11 @@ export default function HomePage() {
 
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {menuItems.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-orange-100 p-5">
+              <article
+                key={item.title}
+                id={`menu-item-${item.title}`}
+                className="rounded-2xl border border-orange-100 p-5"
+              >
                 <div className="mb-4 overflow-hidden rounded-2xl bg-orange-100">
                   <Image
                     src={item.image}
@@ -104,6 +148,7 @@ export default function HomePage() {
                     className="h-40 w-full object-cover"
                   />
                 </div>
+
                 <h3 className="text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-sm text-gray-600">{item.description}</p>
                 <p className="mt-4 text-lg font-bold text-orange-600">{item.price}</p>
@@ -119,7 +164,16 @@ export default function HomePage() {
           <div className="mt-5 grid gap-3 text-sm text-gray-200 md:grid-cols-2">
             <p>📍 м. Миколаїв, вул. Центральна, 12</p>
             <p>📞 +38 (098) 111-22-33</p>
-            <p>✉️ hello@lovesushi.ua</p>
+            <p>
+  ✉️{' '}
+  <a
+    href="about:blank"
+    target="_blank"
+    className="text-white underline transition hover:text-orange-300"
+  >
+    hello@lovesushi.ua
+  </a>
+</p>
             <p>🕒 Щодня: 10:00–22:00</p>
           </div>
         </div>
